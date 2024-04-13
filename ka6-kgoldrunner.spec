@@ -1,18 +1,18 @@
 #
 # Conditional build:
 %bcond_with	tests		# build with tests
-%define		kdeappsver	24.02.1
+%define		kdeappsver	24.02.2
 %define		kframever	5.94.0
 %define		qtver		5.15.2
 %define		kaname		kgoldrunner
 Summary:	kgoldrunner
 Name:		ka6-%{kaname}
-Version:	24.02.1
+Version:	24.02.2
 Release:	1
 License:	GPL v2+/LGPL v2.1+
 Group:		X11/Applications/Games
 Source0:	https://download.kde.org/stable/release-service/%{kdeappsver}/src/%{kaname}-%{version}.tar.xz
-# Source0-md5:	92eac7dca8d80da664304f2d26e72bf6
+# Source0-md5:	2b8c9bd341dbdbf861f65c07ad072c31
 URL:		http://www.kde.org/
 BuildRequires:	Qt6Core-devel >= %{qtver}
 BuildRequires:	Qt6Gui-devel
