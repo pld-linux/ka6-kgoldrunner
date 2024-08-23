@@ -1,18 +1,18 @@
 #
 # Conditional build:
 %bcond_with	tests		# build with tests
-%define		kdeappsver	24.05.2
+%define		kdeappsver	24.08.0
 %define		kframever	5.94.0
 %define		qtver		5.15.2
 %define		kaname		kgoldrunner
 Summary:	kgoldrunner
 Name:		ka6-%{kaname}
-Version:	24.05.2
+Version:	24.08.0
 Release:	1
 License:	GPL v2+/LGPL v2.1+
 Group:		X11/Applications/Games
 Source0:	https://download.kde.org/stable/release-service/%{kdeappsver}/src/%{kaname}-%{version}.tar.xz
-# Source0-md5:	c8be05eca549a8a2a4137086b2dd6747
+# Source0-md5:	b22dc91231d28eac41aa0a6cb25aa380
 URL:		http://www.kde.org/
 BuildRequires:	Qt6Core-devel >= %{qtver}
 BuildRequires:	Qt6Gui-devel
@@ -50,8 +50,8 @@ after the gold.
 %description -l pl.UTF-8
 KGoldrunner jest grą akcji, gdzie bohater biegnie przez labirynt,
 wchodzi po schodach, kopie doły i ucieka wrogom wcelu zebrania grudek
-złota i przejścia do następnego poziomu. Twoi wrogowie również
-szukają złota.
+złota i przejścia do następnego poziomu. Twoi wrogowie również szukają
+złota.
 
 %prep
 %setup -q -n %{kaname}-%{version}
@@ -88,3 +88,4 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/metainfo/org.kde.kgoldrunner.appdata.xml
 %{_datadir}/qlogging-categories6/kgoldrunner.categories
 %{_datadir}/knsrcfiles/kgoldrunner.knsrc
+%{_datadir}/qlogging-categories6/kgoldrunner.renamecategories
