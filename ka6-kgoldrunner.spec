@@ -1,18 +1,18 @@
 #
 # Conditional build:
 %bcond_with	tests		# build with tests
-%define		kdeappsver	25.12.0
+%define		kdeappsver	25.12.1
 %define		kframever	5.94.0
 %define		qtver		5.15.2
 %define		kaname		kgoldrunner
 Summary:	kgoldrunner
 Name:		ka6-%{kaname}
-Version:	25.12.0
+Version:	25.12.1
 Release:	1
 License:	GPL v2+/LGPL v2.1+
 Group:		X11/Applications/Games
 Source0:	https://download.kde.org/stable/release-service/%{kdeappsver}/src/%{kaname}-%{version}.tar.xz
-# Source0-md5:	6cc7c58869129971f3bec56ed8e59874
+# Source0-md5:	315ebb6ac62d57ccced9a5e76e5bb274
 URL:		http://www.kde.org/
 BuildRequires:	Qt6Core-devel >= %{qtver}
 BuildRequires:	Qt6Gui-devel
@@ -38,7 +38,7 @@ BuildRequires:	rpmbuild(macros) >= 1.164
 BuildRequires:	shared-mime-info
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	xz
-Requires(post,postun):	desktop-file-utils
+Requires:	%{name}-data = %{version}-%{release}
 %requires_eq_to Qt6Core Qt6Core-devel
 Obsoletes:	ka5-%{kaname} < %{version}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -54,6 +54,19 @@ KGoldrunner jest grą akcji, gdzie bohater biegnie przez labirynt,
 wchodzi po schodach, kopie doły i ucieka wrogom wcelu zebrania grudek
 złota i przejścia do następnego poziomu. Twoi wrogowie również szukają
 złota.
+
+%package data
+Summary:	Data files for %{kaname}
+Summary(pl.UTF-8):	Dane dla %{kaname}
+Group:		X11/Applications
+Requires(post,postun):	desktop-file-utils
+BuildArch:	noarch
+
+%description data
+Data files for kgoldrunner.
+
+%description data -l pl.UTF-8
+Dane dla kgoldrunnera.
 
 %prep
 %setup -q -n %{kaname}-%{version}
@@ -81,15 +94,18 @@ rm -rf $RPM_BUILD_ROOT
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post
+%post data
 %update_desktop_database_post
 
-%postun
+%postun data
 %update_desktop_database_postun
 
-%files -f %{kaname}.lang
+%files
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kgoldrunner
+
+%files data  -f %{kaname}.lang
+%defattr(644,root,root,755)
 %{_desktopdir}/org.kde.kgoldrunner.desktop
 %{_iconsdir}/hicolor/*x*/apps/kgoldrunner.png
 %{_datadir}/kgoldrunner
